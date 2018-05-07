@@ -1,0 +1,33 @@
+{
+  "name": "nacl-blob",
+  "version": "1.0.0",
+  "description": " Encrypt browser blobs and files with tweetnacl-js-stream",
+  "main": "index.js",
+  "scripts": {
+    "test": "nyc --reporter=lcov tape 'test.js' | tap-format-spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcomnes/jsonfeed-to-atom.git"
+  },
+  "keywords": [
+    "crypto",
+    "encryption",
+    "nacl",
+    "tweetnacl",
+    "nacl-js",
+    "browser"
+  ],
+  "author": "Bret Comnes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bcomnes/jsonfeed-to-atom/issues"
+  },
+  "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
+  "dependencies": {
+    "nanoassert": "^1.1.0"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
+  }
+}
