@@ -2,8 +2,8 @@ const assert = require('assert')
 const Nanobus = require('nanobus')
 
 class NACLBlob {
-  constructor(opts) {
-    this.opts = Object.assign({ 
+  constructor (opts) {
+    this.opts = Object.assign({
       chunkLength: 1024 * 1024 // 1 MB
     }, opts)
   }
@@ -17,9 +17,8 @@ class NACLBlob {
 
     worker.onmessage = (ev) => {
       switch (event.data.name) {
-
         case 'ENCRYPT_START_OK': {
-          return postNextChunk();
+          return postNextChunk()
         }
 
         case 'ENCRYPT_CHUNK_OK': {
@@ -35,10 +34,12 @@ class NACLBlob {
   }
 }
 
-function encrypt(key, nonce, blob, mimeType, opts, cb) {
-
+function encrypt (key, nonce, blob, mimeType, opts, cb) {
+  assert(key, 'A key is required')
+  assert(nonce, 'A nonce is required')
+  assert(blob)
 }
 
-function decrypt(key, nonce, blob, mimeType, opts, cb) {
+function decrypt (key, nonce, blob, mimeType, opts, cb) {
 
 }
