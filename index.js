@@ -1,45 +1,26 @@
 const assert = require('assert')
 const Nanobus = require('nanobus')
+const window = require('global/window')
 
-class NACLBlob {
-  constructor (opts) {
-    this.opts = Object.assign({
-      chunkLength: 1024 * 1024 // 1 MB
-    }, opts)
-  }
+let id = 0
 
-  encrypt (key, nonce, blob, mimeType, cb) {
-    const encryptedChunks = []
-    let position = 0
-    const emitter = new Nanobus()
+// Blob or file
+function encrypt (key, nonce, blob, opts, cb) {
+  const worker = new window.Worker('./encrypt-worker.js')
+  const bus = new Nanobus('encrypt-' + id++)
+  bus.worker = worker
 
-    const worker = new Worker('./encrypt-worker.js')
-
-    worker.onmessage = (ev) => {
-      switch (event.data.name) {
-        case 'ENCRYPT_START_OK': {
-          return postNextChunk()
-        }
-
-        case 'ENCRYPT_CHUNK_OK': {
-          encryptedChunks.push(event.data.encryptedChunks)
-          emitter.emit('progress', {})
-        }
+  worker.onmessage = (ev) => {
+    switch (ev.data.name) {
+      default: {
+        console.log(ev.data)
+        cb()
       }
     }
   }
 
-  decrypt (key, nonce, blob, mimeType, cb) {
-
-  }
+  worker.postMessage({name: 'FOO', msg: 'bar'})
+  return bus
 }
 
-function encrypt (key, nonce, blob, mimeType, opts, cb) {
-  assert(key, 'A key is required')
-  assert(nonce, 'A nonce is required')
-  assert(blob)
-}
-
-function decrypt (key, nonce, blob, mimeType, opts, cb) {
-
-}
+exports.encrypt = encrypt

@@ -4,7 +4,8 @@
   "description": " Encrypt browser blobs and files with tweetnacl-js-stream",
   "main": "index.js",
   "scripts": {
-    "test": "nyc --reporter=lcov tape 'test.js' | tap-format-spec"
+    "test": "nyc --reporter=lcov tape 'test.js' | tap-format-spec",
+    "browser": "budo test.js --live --open"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,22 @@
   },
   "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
   "dependencies": {
-    "nanoassert": "^1.1.0"
+    "concat-stream": "^1.6.2",
+    "filereader-stream": "github:bcomnes/filereader-stream#convert-buffers",
+    "global": "^4.3.2",
+    "nanoassert": "^1.1.0",
+    "nanobus": "^4.3.3",
+    "pump": "^3.0.0",
+    "workerify": "^1.1.0"
   },
   "devDependencies": {
-    "standard": "^11.0.1"
+    "budo": "^11.2.0",
+    "standard": "^11.0.1",
+    "tape": "^4.9.0"
+  },
+  "browserify": {
+    "transform": [
+      "workerify"
+    ]
   }
 }
