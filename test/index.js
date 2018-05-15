@@ -3,25 +3,25 @@ const test = require('tape')
 const naclBlob = require('../index')
 
 test('test stream', t => {
-  const key = new Uint8Array(32)
-  const nonce = new Uint8Array(16)
+  var key = new Uint8Array(32)
+  var nonce = new Uint8Array(16)
   // var arr = nacl.util.decodeUTF8('Hello, chunky!');
-  const arr = new Uint8Array(48)
-  for (let i = 0; i < arr.length; i++) arr[i] = i & 0xff
-  const blob = new Blob([arr])
-
-  naclBlob.encrypt(key, nonce, blob, {chunkSize: 24}, (err, encrypted) => {
+  var arr = new Uint8Array(10 * 1024 * 1024 + 111)
+  for (var i = 0; i < arr.length; i++) arr[i] = i & 0xff
+  var blob = new Blob([arr])
+  console.log('hi')
+  const encryptor = naclBlob.encrypt(key, nonce, blob, {chunkSize: 24}, (err, encryptedBlob) => {
     t.error(err)
-
-    naclBlob.encrypt(key, nonce, new Blob([encrypted]), {chunkSize: 24}, (err, decrypted) => {
+    console.log(encryptedBlob)
+    naclBlob.encrypt(key, nonce, encryptedBlob, {chunkSize: 24}, (err, decryptedBlob) => {
       t.error(err)
-
-      console.log(arr)
-      console.log(decrypted)
-      compareBlobs(new Blob([arr]), new Blob([decrypted]))
+      console.log(decryptedBlob)
+      compareBlobs(blob, decryptedBlob)
       t.end()
     })
   })
+
+  encryptor.on('progress', (pos, len) => { console.log(pos, len) })
 })
 
 function compareBlobs (a, b) {
