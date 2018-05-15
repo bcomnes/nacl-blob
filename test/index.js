@@ -6,7 +6,7 @@ test('test stream', t => {
   const key = new Uint8Array(32)
   const nonce = new Uint8Array(16)
   // var arr = nacl.util.decodeUTF8('Hello, chunky!');
-  const arr = new Uint8Array(10 * 1024 * 1024 + 111)
+  const arr = new Uint8Array(10)
   for (let i = 0; i < arr.length; i++) arr[i] = i & 0xff
   const blob = new Blob([arr])
 

@@ -33,3 +33,7 @@ cb details
 [11]: https://github.com/feross/standard
 [12]: https://img.shields.io/coveralls/bcomnes/nacl-blob/master.svg?style=flat-square
 [13]: https://coveralls.io/github/bcomnes/nacl-blob
+
+
+https://github.com/jedisct1/libsodium.js
+https://github.com/jedisct1/libsodium/issues/475
