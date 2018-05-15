@@ -9,19 +9,19 @@ test('test stream', t => {
   var arr = new Uint8Array(10 * 1024 * 1024 + 111)
   for (var i = 0; i < arr.length; i++) arr[i] = i & 0xff
   var blob = new Blob([arr])
-  console.log('hi')
-  const encryptor = naclBlob.encrypt(key, nonce, blob, {chunkSize: 24}, (err, encryptedBlob) => {
+  const encryptor = naclBlob.encrypt(key, nonce, blob, (err, encryptedBlob) => {
     t.error(err)
     console.log(encryptedBlob)
-    naclBlob.encrypt(key, nonce, encryptedBlob, {chunkSize: 24}, (err, decryptedBlob) => {
+    const decryptor = naclBlob.decrypt(key, nonce, encryptedBlob, (err, decryptedBlob) => {
       t.error(err)
       console.log(decryptedBlob)
       compareBlobs(blob, decryptedBlob)
       t.end()
     })
+    decryptor.on('progress', (pos, len) => { console.log('decrypting ' + (pos / len) * 100) })
   })
 
-  encryptor.on('progress', (pos, len) => { console.log(pos, len) })
+  encryptor.on('progress', (pos, len) => { console.log('encrypting ' + (pos / len) * 100) })
 })
 
 function compareBlobs (a, b) {
