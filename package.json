@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc --reporter=lcov tape 'test.js' | tap-format-spec",
-    "browser": "budo test.js --live --open"
+    "browser": "budo test/index.js --live --open"
   },
   "repository": {
     "type": "git",
@@ -27,8 +27,9 @@
   "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
   "dependencies": {
     "concat-stream": "^1.6.2",
-    "filereader-stream": "github:bcomnes/filereader-stream#convert-buffers",
+    "filereader-stream": "^2.0.0",
     "global": "^4.3.2",
+    "nacl-stream": "^0.3.5",
     "nanoassert": "^1.1.0",
     "nanobus": "^4.3.3",
     "pump": "^3.0.0",
@@ -37,7 +38,8 @@
   "devDependencies": {
     "budo": "^11.2.0",
     "standard": "^11.0.1",
-    "tape": "^4.9.0"
+    "tape": "^4.9.0",
+    "through2": "^2.0.3"
   },
   "browserify": {
     "transform": [
