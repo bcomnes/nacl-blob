@@ -6,6 +6,7 @@ const concatStream = require('concat-stream')
 const pump = require('pump')
 const through = require('through2')
 const nacl = require('nacl-stream')
+const tou8 = require('buffer-to-uint8array')
 
 // let id = 0
 function encrypt (key, nonce, blob, opts, cb) {
@@ -14,9 +15,9 @@ function encrypt (key, nonce, blob, opts, cb) {
     cb = opts
     opts = {}
   }
-  opts = Object.assign(opts, {
+  opts = Object.assign({
     chunkSize: 1024 * 1024
-  }) // defaults
+  }, opts) // defaults
 
   // const bus = new Nanobus('encrypt-' + id++)
   const frs = filereaderStream(blob, { chunkSize: opts.chunkSize })
@@ -24,23 +25,33 @@ function encrypt (key, nonce, blob, opts, cb) {
   let encryptor = nacl.stream.createEncryptor(key, nonce, opts.chunkSize)
 
   let encrypted = null
+  let buffer = null
 
   pump(frs, through(encrypt, finalizeEncrypt), concat, streamEnded)
 
   function encrypt (chunk, enc, cb) {
-    let encryptedChunk
-    try {
-      encryptedChunk = encryptor.encryptChunk(chunk, false)
-    } catch (e) {
-      return cb(e)
+    chunk = tou8(chunk)
+    const isFirstChunk = buffer === null
+    if (isFirstChunk) {
+      buffer = chunk
+      return cb(null)
+    } else {
+      const bufferedChunk = buffer
+      buffer = chunk
+      let encryptedChunk
+      try {
+        encryptedChunk = encryptor.encryptChunk(bufferedChunk, false)
+      } catch (e) {
+        return cb(e)
+      }
+      return cb(null, encryptedChunk)
     }
-    cb(null, encryptedChunk)
   }
 
   function finalizeEncrypt (cb) {
     let endChunk
     try {
-      endChunk = encryptor.encryptChunk(new Uint8Array([]), true)
+      endChunk = encryptor.encryptChunk(buffer, true)
       encryptor.clean()
       encryptor = null
     } catch (e) {
@@ -69,9 +80,9 @@ function decrypt (key, nonce, blob, opts, cb) {
     cb = opts
     opts = {}
   }
-  opts = Object.assign(opts, {
+  opts = Object.assign({
     chunkSize: 1024 * 1024
-  }) // defaults
+  }, opts) // defaults
 
   // const bus = new Nanobus('encrypt-' + id++)
   const frs = filereaderStream(blob, { chunkSize: opts.chunkSize })
@@ -79,23 +90,33 @@ function decrypt (key, nonce, blob, opts, cb) {
   let decryptor = nacl.stream.createDecryptor(key, nonce, opts.chunkSize)
 
   let decrypted = null
+  let buffer
 
   pump(frs, through(decrypt, finalizeDecrypt), concat, streamEnded)
 
   function decrypt (chunk, enc, cb) {
-    let decryptedChunk
-    try {
-      decryptedChunk = decryptor.decryptChunk(chunk, false)
-    } catch (e) {
-      return cb(e)
+    chunk = tou8(chunk)
+    const isFirstChunk = buffer === null
+    if (isFirstChunk) {
+      buffer = chunk
+      return cb(null)
+    } else {
+      const bufferedChunk = buffer
+      buffer = chunk
+      let decryptedChunk
+      try {
+        decryptedChunk = decryptor.decryptChunk(bufferedChunk, false)
+      } catch (e) {
+        return cb(e)
+      }
+      return cb(null, decryptedChunk)
     }
-    cb(null, decryptedChunk)
   }
 
   function finalizeDecrypt (cb) {
     let endChunk
     try {
-      endChunk = decryptor.decryptChunk(new Uint8Array([]), true)
+      endChunk = decryptor.decryptChunk(new Uint8Array(buffer), true)
       decryptor.clean()
       decryptor = null
     } catch (e) {

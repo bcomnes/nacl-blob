@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
   "dependencies": {
+    "buffer-to-uint8array": "^1.1.0",
     "concat-stream": "^1.6.2",
     "filereader-stream": "^2.0.0",
     "global": "^4.3.2",
