@@ -9,7 +9,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/bcomnes/jsonfeed-to-atom/issues"
+    "url": "https://github.com/bcomnes/nacl-blob/issues"
   },
   "dependencies": {
     "nacl-stream": "^0.3.5",
@@ -26,7 +26,7 @@
     "tape": "^4.9.0",
     "tape-run": "^4.0.0"
   },
-  "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
+  "homepage": "https://github.com/bcomnes/nacl-blob#readme",
   "keywords": [
     "browser",
     "crypto",
@@ -39,7 +39,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bcomnes/jsonfeed-to-atom.git"
+    "url": "git+https://github.com/bcomnes/nacl-blob.git"
   },
   "scripts": {
     "browser": "budo test/index.js --live --open",
