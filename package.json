@@ -1,35 +1,16 @@
 {
   "name": "nacl-blob",
-  "version": "1.0.0",
   "description": "Encrypt browser blobs and files with tweetnacl-js-stream",
-  "main": "index.js",
-  "scripts": {
-    "test": "run-s test:*",
-    "test:deps": "dependency-check package.json --missing --unused --entry index.js --no-dev --ignore-module workerify",
-    "test:lint": "standard",
-    "test:browser": "browserify test/*.js | tape-run",
-    "browser": "budo test/index.js --live --open",
-    "build": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external -o dist/index.js",
-    "prepublish": "run-s build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bcomnes/jsonfeed-to-atom.git"
-  },
-  "keywords": [
-    "crypto",
-    "encryption",
-    "nacl",
-    "tweetnacl",
-    "nacl-js",
-    "browser"
-  ],
+  "version": "1.0.0",
   "author": "Bret Comnes",
-  "license": "MIT",
+  "browserify": {
+    "transform": [
+      "workerify"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/bcomnes/jsonfeed-to-atom/issues"
   },
-  "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
   "dependencies": {
     "nacl-stream": "^0.3.5",
     "nanobus": "^4.3.3",
@@ -45,9 +26,28 @@
     "tape": "^4.9.0",
     "tape-run": "^4.0.0"
   },
-  "browserify": {
-    "transform": [
-      "workerify"
-    ]
+  "homepage": "https://github.com/bcomnes/jsonfeed-to-atom#readme",
+  "keywords": [
+    "browser",
+    "crypto",
+    "encryption",
+    "nacl",
+    "nacl-js",
+    "tweetnacl"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcomnes/jsonfeed-to-atom.git"
+  },
+  "scripts": {
+    "browser": "budo test/index.js --live --open",
+    "build": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external -o dist/index.js",
+    "prepublish": "run-s build",
+    "test": "run-s test:*",
+    "test:browser": "browserify test/*.js | tape-run",
+    "test:deps": "dependency-check package.json --missing --unused --entry index.js --no-dev --ignore-module workerify",
+    "test:lint": "standard"
   }
 }
