@@ -135,6 +135,12 @@ Returns an [Event Emitter][bus] that you can use to listen for the following eve
 }
 ```
 
+## See Also
+
+- https://github.com/jedisct1/libsodium.js
+- https://github.com/jedisct1/libsodium/issues/475
+- https://developer.mozilla.org/en-US/docs/Web/API/Body/blob
+
 ## License
 [MIT](https://tldrlegal.com/license/mit-license)
 
@@ -155,7 +161,3 @@ Returns an [Event Emitter][bus] that you can use to listen for the following eve
 [blob]: https://developer.mozilla.org/en-US/docs/Web/API/Blob
 [bus]: https://github.com/choojs/nanobus
 [nodebuff]: https://nodejs.org/api/buffer.html
-
-https://github.com/jedisct1/libsodium.js
-https://github.com/jedisct1/libsodium/issues/475
-https://developer.mozilla.org/en-US/docs/Web/API/Body/blob
