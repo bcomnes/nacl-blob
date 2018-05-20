@@ -1,5 +1,5 @@
 # nacl-blob [![stability][0]][1]
-[![npm version][2]][3] [![build status][4]][5] [![coverage][12]][13]
+[![npm version][2]][3] [![build status][4]][5]
 [![downloads][8]][9] [![js-standard-style][10]][11]
 
 Encrypt and decrypt DOM blobs using [nacl-stream](https://github.com/dchest/nacl-stream-js) within service workers.
@@ -154,8 +154,6 @@ Returns an [Event Emitter][bus] that you can use to listen for the following eve
 [9]: https://npmjs.org/package/nacl-blob
 [10]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [11]: https://github.com/feross/standard
-[12]: https://img.shields.io/coveralls/bcomnes/nacl-blob/master.svg?style=flat-square
-[13]: https://coveralls.io/github/bcomnes/nacl-blob
 [uint8]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array
 [file]: https://developer.mozilla.org/en-US/docs/Web/API/File
 [blob]: https://developer.mozilla.org/en-US/docs/Web/API/Blob
