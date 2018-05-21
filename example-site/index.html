@@ -11,10 +11,39 @@
     <h1>nacl-blob examples</h1>
   </header>
   <section>
-    Encrypt a file.
+    <h2>Encrypt a file</h2>
+    <form id="encrypt-form" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="load-file">Choose file to encrypt: </label>
+        <input type="file" id="load-file" name="file" required>
+      </div>
+      <div>
+        <label for="encryption-key">Provide a key (32 byte base64): </label>
+        <input type="text" id="encryption-key" name="key" required>
+      </div>
+      <div>
+          <h3>Preview</h3>
+          <div id="encrypt-messages"></div>
+         <img id="input-image" />
+      </div>
+      <div>
+        <button disabled id="encrypt-button" type="button">Encrypt</button>
+      </div>
+      <div>
+          <h3>Encrypted File</h3>
+          <div id="encrypt-errors"></div>
+          <label for="nonce">Nonce: </label>
+          <input id="nonce" disabled />
+          <label for="nonce">Key Used: </label>
+          <input id="key-used" disabled />
+          <a download id="download-encrypted">Download Encrypted File</a>
+       </div>
+     </form>
+     
   </section>
   <section>
-    Decrypt a file
+    <h2>Decrypt a file</h2>
   </section>
+  <script src="/bundle.js"></script>
 </body>
 </html>

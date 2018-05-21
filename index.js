@@ -3,10 +3,10 @@ const nacl = require('nacl-stream')
 const Nanobus = require('nanobus')
 
 function checkArgs (key, nonce, maxChunkLength) {
-  if (key.length !== 32) throw new Error('bad key length, must be 32 bytes')
-  if (nonce.length !== 16) throw new Error('bad nonce length, must be 16 bytes')
-  if (maxChunkLength >= 0xffffffff) throw new Error('max chunk length is too large')
-  if (maxChunkLength < 16) throw new Error('max chunk length is too small')
+  if (key.length !== 32) return Error('bad key length, must be 32 bytes')
+  if (nonce.length !== 16) return new Error('bad nonce length, must be 16 bytes')
+  if (maxChunkLength >= 0xffffffff) return new Error('max chunk length is too large')
+  if (maxChunkLength < 16) return new Error('max chunk length is too small')
 }
 
 function encrypt (key, nonce, blob, opts, cb) {
@@ -20,7 +20,8 @@ function encrypt (key, nonce, blob, opts, cb) {
     mimeType: blob.type
   }, opts) // defaults
 
-  checkArgs(key, nonce, opts.chunkSize)
+  const argsNotOk = checkArgs(key, nonce, opts.chunkSize)
+  if (argsNotOk) return cb(argsNotOk)
 
   const bus = new Nanobus()
 
@@ -122,7 +123,8 @@ function decrypt (key, nonce, blob, opts, cb) {
     mimeType: blob.type
   }, opts) // defaults
 
-  checkArgs(key, nonce, opts.chunkSize)
+  const argsNotOk = checkArgs(key, nonce, opts.chunkSize)
+  if (argsNotOk) return cb(argsNotOk)
 
   const bus = new Nanobus()
 
