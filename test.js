@@ -14,7 +14,7 @@ test('test encryption and decryption', t => {
   let decryptorProgressRan = false
 
   const encryptor = naclBlob.encrypt(key, nonce, blob, (err, encryptedBlob) => {
-    t.error(err, 'encrypt with error')
+    t.error(err, 'encrypt without error')
     const decryptor = naclBlob.decrypt(key, nonce, encryptedBlob, (err, decryptedBlob) => {
       t.error(err, 'decrypt without error')
 

@@ -1,7 +1,7 @@
 {
   "name": "nacl-blob",
   "description": "Encrypt browser blobs and files with tweetnacl-js-stream",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Bret Comnes",
   "browserify": {
     "transform": [
@@ -17,6 +17,7 @@
     "workerify": "^1.1.0"
   },
   "devDependencies": {
+    "@tap-format/spec": "^0.2.0",
     "budo": "^11.2.0",
     "cpx": "^1.5.0",
     "dependency-check": "^3.1.0",
@@ -48,7 +49,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:dist": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external -o dist/index.js",
-    "build:site": "rimraf site && mkdirp site && cpx 'example-site/static/*' site && browserify example-site/index.js -o site/bundle.js",
+    "build:site": "rimraf build && mkdirp build && cpx 'example-site/static/*' build && browserify example-site/index.js -o build/bundle.js",
     "prepublish": "run-s build:dist",
     "test": "run-s test:*",
     "test:browser": "browserify test.js | tape-run | tap-format-spec",
