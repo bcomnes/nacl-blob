@@ -4,6 +4,8 @@
 
 Encrypt and decrypt DOM blobs using [nacl-stream](https://github.com/dchest/nacl-stream-js) within service workers.  A port of `nacl-stream-js`'s demo into a consumable module.
 
+- [🌎 Example site](https://nacl-blob.netlify.com)
+
 ## Usage
 
 ```js
