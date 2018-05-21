@@ -2,7 +2,7 @@
 [![npm version][2]][3] [![build status][4]][5]
 [![downloads][8]][9] [![js-standard-style][10]][11]
 
-Encrypt and decrypt DOM blobs using [nacl-stream](https://github.com/dchest/nacl-stream-js) within service workers.
+Encrypt and decrypt DOM blobs using [nacl-stream](https://github.com/dchest/nacl-stream-js) within service workers.  A port of `nacl-stream-js`'s demo into a consumable module.
 
 ## Usage
 
@@ -56,7 +56,7 @@ Import the `encrypt` function.
 
 Import the `decrypt` function.
 
-*Note*
+**Note**
 
 This module uses a build-time [browserify](http://browserify.org) transform called [`workerify`](https://github.com/shama/workerify).  If you are not using browserify, you can import from the transformed version of the module by importing from the `nacl-blob/dist` path. e.g:
 

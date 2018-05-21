@@ -42,12 +42,12 @@
     "url": "git+https://github.com/bcomnes/nacl-blob.git"
   },
   "scripts": {
-    "browser": "budo test/index.js --live --open",
     "build": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external -o dist/index.js",
     "prepublish": "run-s build",
     "test": "run-s test:*",
-    "test:browser": "browserify test/*.js | tape-run",
+    "test:browser": "browserify test.js | tape-run | tap-format-spec",
     "test:deps": "dependency-check package.json --missing --unused --entry index.js --no-dev --ignore-module workerify",
-    "test:lint": "standard"
+    "test:lint": "standard",
+    "test-live": "budo test.js --live --open"
   }
 }
