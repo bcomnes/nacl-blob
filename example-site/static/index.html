@@ -20,6 +20,7 @@
       <div>
         <label for="encryption-key">Provide a key (32 byte base64): </label>
         <input type="text" id="encryption-key" name="key" required>
+        <button type="button" id="generate-encryption-key">Generate Key</button>
       </div>
       <div>
           <h3>Preview</h3>
@@ -43,6 +44,33 @@
   </section>
   <section>
     <h2>Decrypt a file</h2>
+    <div>
+      <label for="decryptselect">Select decrypt source: </label>
+      <select id="decryptselect" name="text"> <!--Supplement an id here instead of using 'text'-->
+        <option value="gif" selected>Log gif</option> 
+        <option value="upload">Upload file</option>
+      </select>
+    </div>
+    <div>
+      <label for="load-decrypt-file">Choose file to encrypt: </label>
+      <input disabled type="file" id="load-decrypt-file" required>
+    </div>
+    <div>
+      <label for="decrypt-key">Provide a key (32 byte base64): </label>
+      <input disabled type="text" id="decrypt-key" name="key" required value="ltL5rVWibOaNh6Rw7x01cmHveKYN66dHEuw0hPObGzE">
+    </div>
+    <div>
+      <label for="decrypt-nonce">Provide a nonce (16 byte base64): </label>
+      <input disabled type="text" id="decrypt-nonce" name="key" required value="krwYGQdqBY0LVxsL8Y4thg==">
+    </div>
+    <div>
+      <button id="decrypt-button" type="button">Download and decrypt</button>
+    </div>
+    <div>
+      <h3>Preview</h3>
+      <div id="decrypt-messages"></div>
+      <img id="decrypted-image" />
+    </div>
   </section>
   <script src="/bundle.js"></script>
 </body>
