@@ -159,7 +159,7 @@ function decrypt (key, nonce, blob, opts, cb) {
       }
 
       case 'DECRYPT_FINISH_OK': {
-        return cb(null, new Blob(decryptedChunks), { type: opts.mimeType })
+        return cb(null, new Blob(decryptedChunks, { type: opts.mimeType }))
       }
 
       case 'DECRYPT_CANCEL_OK': {

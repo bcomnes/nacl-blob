@@ -12,12 +12,15 @@ const decryptKey = qs('#decrypt-key')
 const decryptNonce = qs('#decrypt-nonce')
 const decryptButton = qs('#decrypt-button')
 const decryptMessage = qs('#decrypt-messages')
+const decryptImage = qs('#decrypted-image')
+const decryptDownload = qs('#decrypted-download-link')
 
 const gifKey = decryptKey.value
 const gifNonce = decryptNonce.value
 
 let decryptMode = 'gif'
 let uploadFileObj = null
+let decryptedPreviewURLObj = null
 
 decryptSelect.addEventListener('change', ev => {
   const source = ev.target.value
@@ -63,6 +66,7 @@ decryptFile.addEventListener('change', ev => {
 decryptButton.addEventListener('click', ev => {
   decryptButton.setAttribute('disabled', '')
   decryptButton.innerText = 'Loading...'
+  if (decryptedPreviewURLObj) URL.revokeObjectURL(decryptedPreviewURLObj)
   switch (decryptMode) {
     case 'gif': {
       fetch(testDataName).then(function (response) {
@@ -73,16 +77,23 @@ decryptButton.addEventListener('click', ev => {
       }).then(encryptedBlob => {
         decryptMessage.innerText = decryptMessage.innerText = 'Got blob'
         return new Promise((resolve, reject) => {
-          debugger;
           const key = nacl.util.decodeBase64(decryptKey.value)
           const nonce = nacl.util.decodeBase64(decryptNonce.value)
           const decryptor = decrypt(key, nonce, encryptedBlob, (err, decryptedBlob) => {
             if (err) return reject(err)
+            resolve(decryptedBlob)
           })
           decryptor.on('progress', ({ position, length }) => {
             decryptMessage.innerText = `decrypting: ${(position / length) * 100}%`
           })
         })
+      }).then(decyptedBlob => {
+        decryptedPreviewURLObj = URL.createObjectURL(decyptedBlob)
+
+        if (decyptedBlob.type.startsWith('image')) {
+          decryptImage.src = decryptedPreviewURLObj
+        }
+        decryptDownload.href = decryptedPreviewURLObj
       }).catch(err => {
         decryptMessage.innerText = err.message
       }).then(() => {

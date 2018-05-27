@@ -48,7 +48,7 @@
       <label for="decryptselect">Select decrypt source: </label>
       <select id="decryptselect" name="text"> <!--Supplement an id here instead of using 'text'-->
         <option value="gif" selected>Log gif</option> 
-        <option value="upload">Upload file</option>
+        <!-- <option value="upload">Upload file</option> -->
       </select>
     </div>
     <div>
@@ -57,11 +57,11 @@
     </div>
     <div>
       <label for="decrypt-key">Provide a key (32 byte base64): </label>
-      <input disabled type="text" id="decrypt-key" name="key" required value="ltL5rVWibOaNh6Rw7x01cmHveKYN66dHEuw0hPObGzE">
+      <input disabled type="text" id="decrypt-key" name="key" required value="rvtGMmhDlu+cHoAUea0hNmoM9DKg4LPZMcNOOjdRx58=">
     </div>
     <div>
       <label for="decrypt-nonce">Provide a nonce (16 byte base64): </label>
-      <input disabled type="text" id="decrypt-nonce" name="key" required value="krwYGQdqBY0LVxsL8Y4thg==">
+      <input disabled type="text" id="decrypt-nonce" name="key" required value="hae2diS2PMJk1YnMKyBGOA==">
     </div>
     <div>
       <button id="decrypt-button" type="button">Download and decrypt</button>
@@ -70,6 +70,7 @@
       <h3>Preview</h3>
       <div id="decrypt-messages"></div>
       <img id="decrypted-image" />
+      <a id="decrypted-download-link" >Download Decrypted File</a>
     </div>
   </section>
   <script src="/bundle.js"></script>
