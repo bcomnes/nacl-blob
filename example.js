@@ -1,8 +1,9 @@
 /* eslint-env browser */
-const naclBlob = require('nacl-blob')
+const naclBlob = require('./index')
+const nacl = require('tweetnacl')
 
-const key = new Uint8Array(32)
-const nonce = new Uint8Array(16)
+const key = nacl.box.keyPair().secretKey
+const nonce = nacl.randomBytes(16)
 
 const arr = new Uint8Array(10 * 1024 * 1024 + 111)
 for (let i = 0; i < arr.length; i++) arr[i] = i & 0xff

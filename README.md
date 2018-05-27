@@ -10,10 +10,12 @@ Encrypt and decrypt DOM blobs using [nacl-stream](https://github.com/dchest/nacl
 
 ```js
 const naclBlob = require('nacl-blob')
+const nacl = require('tweetnacl')
 
-const key = new Uint8Array(32)
-const nonce = new Uint8Array(16)
+const key = nacl.box.keyPair().secretKey
+const nonce = nacl.randomBytes(16)
 
+// Any kind of data inside of a blob
 const arr = new Uint8Array(10 * 1024 * 1024 + 111)
 for (let i = 0; i < arr.length; i++) arr[i] = i & 0xff
 const blob = new Blob([arr])
