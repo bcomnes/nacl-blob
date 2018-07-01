@@ -17,7 +17,8 @@ function encrypt (key, nonce, blob, opts, cb) {
   }
   opts = Object.assign({
     chunkSize: 1024 * 1024,
-    mimeType: blob.type
+    mimeType: blob.type,
+    name: blob.name
   }, opts) // defaults
 
   const argsNotOk = checkArgs(key, nonce, opts.chunkSize)
@@ -49,7 +50,11 @@ function encrypt (key, nonce, blob, opts, cb) {
       }
 
       case 'ENCRYPT_FINISH_OK': {
-        return cb(null, new Blob(encryptedChunks, {type: opts.mimeType}))
+        if (opts.name) {
+          return cb(null, new File(encryptedChunks, opts.name, { type: opts.mimeType }))
+        } else {
+          return cb(null, new Blob(encryptedChunks, { type: opts.mimeType }))
+        }
       }
       case 'ENCRYPT_CANCEL_OK': {
         return cb(ev.data.reason)
@@ -120,7 +125,8 @@ function decrypt (key, nonce, blob, opts, cb) {
   }
   opts = Object.assign({
     chunkSize: 1024 * 1024,
-    mimeType: blob.type
+    mimeType: blob.type,
+    name: blob.name
   }, opts) // defaults
 
   const argsNotOk = checkArgs(key, nonce, opts.chunkSize)
@@ -159,7 +165,11 @@ function decrypt (key, nonce, blob, opts, cb) {
       }
 
       case 'DECRYPT_FINISH_OK': {
-        return cb(null, new Blob(decryptedChunks, { type: opts.mimeType }))
+        if (opts.name) {
+          return cb(null, new File(decryptedChunks, opts.name, { type: opts.mimeType }))
+        } else {
+          return cb(null, new Blob(decryptedChunks, { type: opts.mimeType }))
+        }
       }
 
       case 'DECRYPT_CANCEL_OK': {

@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2018-06-30
+* Returning Files instead of Blob's when passed a file!
+
 ## 1.1.2 - 2018-06-30
 * Fix dist export name
 
