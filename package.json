@@ -1,7 +1,7 @@
 {
   "name": "nacl-blob",
   "description": "Encrypt browser blobs and files with tweetnacl-js-stream",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Bret Comnes",
   "browserify": {
     "transform": [
