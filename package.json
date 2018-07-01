@@ -51,7 +51,7 @@
   },
   "scripts": {
     "build": "run-p build:*",
-    "build:dist": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external -o dist/index.js",
+    "build:dist": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external --standalone naclBlob -o dist/index.js",
     "build:site": "rimraf build && mkdirp build && cpx 'example-site/static/*' build && browserify example-site/index.js -o build/bundle.js",
     "prepublish": "run-s build:dist",
     "test": "run-s test:*",
