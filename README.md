@@ -108,7 +108,7 @@ Returns an [Event Emitter][bus] that you can use to listen for the following eve
 
 Decrypt a [Blob][blob] that was encrypted using a `key` and `nonce`.  Returns an event emitter that can be used to track progress.  The decrypted data will be returned in the callback as a [Blob][blob].
 
-The `key` must be the same 32-byte [Uint8Array][uint8] or [Node.js Buffer][nodebuff] used to encrypt the file. (see [github.com/dchest/tweetnacl-js#usage]
+The `key` must be the same 32-byte [Uint8Array][uint8] or [Node.js Buffer][nodebuff] used to encrypt the file. (see [github.com/dchest/tweetnacl-js#usage](https://github.com/dchest/tweetnacl-js#usage))
 
 The `nonce` must be the same 16-byte [Uint8Array][uint8] or [Node.js Buffer][nodebuff] used to encrypt the file.
 
