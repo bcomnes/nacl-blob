@@ -54,3 +54,4 @@ function compareBlobs (a, b, cb) {
   }
   r1.readAsBinaryString(a)
 }
+

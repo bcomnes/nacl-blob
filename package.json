@@ -53,11 +53,12 @@
     "build": "run-p build:*",
     "build:dist": "rimraf dist && mkdirp dist && browserify index.js --no-bundle-external --standalone naclBlob -o dist/index.js",
     "build:site": "rimraf build && mkdirp build && cpx 'example-site/static/*' build && browserify example-site/index.js -o build/bundle.js",
-    "prepublish": "run-s build:dist",
+    "prepare": "run-s build:dist",
     "test": "run-s test:*",
     "test:browser": "browserify test.js | tape-run | tap-format-spec",
     "test:deps": "dependency-check package.json --missing --unused --entry index.js --no-dev --ignore-module workerify",
     "test:lint": "standard",
+    "test-ie": "browserify test.js | tape-run --browser ie | tap-format-spec",
     "test-live": "budo test.js --live --open",
     "start": "budo example-site/index.js:bundle.js --dir example-site/static --live --open"
   }
