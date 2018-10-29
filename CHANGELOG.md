@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.1 - 2018-10-29
+* Bump nanobus to ^4.3.5 due to failing builds on 4.3.4
+
 ## 2.0.0 - 2018-06-30
 * Returning Files instead of Blob's when passed a file!
 
