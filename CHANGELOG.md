@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.2 - 2018-12-13
+* Update nanobus dependency to 4.4.0.
+
 ## 2.0.1 - 2018-10-29
 * Bump nanobus to ^4.3.5 due to failing builds on 4.3.4
 
