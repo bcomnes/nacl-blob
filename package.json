@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "nacl-stream": "0.3.5",
-    "nanobus": "^4.3.5",
+    "nanobus": "^4.4.0",
     "workerify": "^1.1.0"
   },
   "devDependencies": {
