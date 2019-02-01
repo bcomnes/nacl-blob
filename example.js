@@ -16,10 +16,10 @@ const encryptor = naclBlob.encrypt(key, nonce, blob, (err, encryptedBlob) => {
     if (err) throw (err)
     compareBlobs(blob, decryptedBlob)
   })
-  decryptor.on('progress', ({position, length}) => { console.log('decrypting ' + (position / length) * 100 + '%') })
+  decryptor.on('progress', ({ position, length }) => { console.log('decrypting ' + (position / length) * 100 + '%') })
 })
 
-encryptor.on('progress', ({position, length}) => { console.log('encrypting ' + (position / length) * 100 + '%') })
+encryptor.on('progress', ({ position, length }) => { console.log('encrypting ' + (position / length) * 100 + '%') })
 
 function compareBlobs (a, b) {
   const r1 = new FileReader()

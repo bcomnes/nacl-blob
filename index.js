@@ -39,7 +39,7 @@ function encrypt (key, nonce, blob, opts, cb) {
 
       case 'ENCRYPT_CHUNK_OK': {
         encryptedChunks.push(ev.data.encryptedChunk)
-        bus.emit('progress', {position, length: blob.size})
+        bus.emit('progress', { position, length: blob.size })
         if (!ev.data.isLast) {
           return postNextChunk()
         }
@@ -153,7 +153,7 @@ function decrypt (key, nonce, blob, opts, cb) {
 
         decryptedChunks.push(ev.data.decryptedChunk)
 
-        bus.emit('progress', {position, length: blob.size})
+        bus.emit('progress', { position, length: blob.size })
 
         if (!ev.data.isLast) {
           return postNextChunk()

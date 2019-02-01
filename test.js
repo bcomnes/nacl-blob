@@ -27,13 +27,13 @@ test('test encryption and decryption', t => {
         t.end()
       })
     })
-    decryptor.on('progress', ({position, length}) => {
+    decryptor.on('progress', ({ position, length }) => {
       decryptorProgressRan = true
       console.log('decrypting %' + Math.floor((position / length) * 100))
     })
   })
 
-  encryptor.on('progress', ({position, length}) => {
+  encryptor.on('progress', ({ position, length }) => {
     encryptorProgressRan = true
     console.log('encrypting %' + Math.floor((position / length) * 100))
   })
