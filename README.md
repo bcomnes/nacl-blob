@@ -60,7 +60,7 @@ Import the `encrypt` function.
 
 Import the `decrypt` function.
 
-**Note**
+### ⚠️ IMPORTANT ⚠️
 
 This module uses a build-time [browserify](http://browserify.org) transform called [`workerify`](https://github.com/shama/workerify).  If you are not using browserify, you can import from the transformed version of the module by importing from the `nacl-blob/dist` path. e.g:
 
@@ -68,6 +68,8 @@ This module uses a build-time [browserify](http://browserify.org) transform call
 const encrypt = require('nacl-blob/dist').encrypt
 const decrypt = require('nacl-blob/dist').decrypt
 ```
+
+(Wanted, a workerify transform that writes out the contents to a separate bundle)
 
 ### `encrypt(key, nonce, blob, [opts], cb)`
 
