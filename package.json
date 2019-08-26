@@ -20,7 +20,7 @@
     "@tap-format/spec": "^0.2.0",
     "auto-changelog": "^1.10.2",
     "budo": "^11.2.0",
-    "cpx": "^1.5.0",
+    "cpx2": "^2.0.0",
     "dependency-check": "^4.1.0",
     "gh-release": "^3.4.0",
     "global": "^4.3.2",
