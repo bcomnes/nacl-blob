@@ -33,7 +33,7 @@
     "string-to-arraybuffer": "^1.0.0",
     "tape": "^4.9.0",
     "tape-run": "^6.0.0",
-    "tweetnacl": "^1.0.0",
+    "tweetnacl": "^1.0.3",
     "tweetnacl-util": "^0.15.0"
   },
   "homepage": "https://github.com/bcomnes/nacl-blob#readme",
