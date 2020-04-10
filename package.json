@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@tap-format/spec": "^0.2.0",
-    "auto-changelog": "^1.10.2",
+    "auto-changelog": "^2.0.0",
     "budo": "^11.2.0",
     "cpx2": "^2.0.0",
     "dependency-check": "^4.1.0",
